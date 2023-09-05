@@ -4,7 +4,7 @@
     drop table if exists customer;
 
     create table beer (
-        beer_style tinyint not null check (beer_style between 0 and 9),
+        beer_style  TINYINT (50) not null,
         price decimal(38,2) not null,
         quantity_on_hand integer,
         version integer,
@@ -22,6 +22,5 @@
         last_modified_date datetime(6),
         id varchar(36) not null,
         customer_name varchar(255),
-        email varchar(255),
         primary key (id)
     ) engine=InnoDB;

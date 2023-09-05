@@ -3,24 +3,21 @@ package com.example.spring6restmvc.bootstrap;
 import com.example.spring6restmvc.entities.Beer;
 import com.example.spring6restmvc.entities.Customer;
 import com.example.spring6restmvc.model.BeerCSVRecord;
-import com.example.spring6restmvc.model.BeerDto;
 import com.example.spring6restmvc.model.BeerStyle;
-import com.example.spring6restmvc.model.CustomerDto;
 import com.example.spring6restmvc.repositories.BeerRepository;
 import com.example.spring6restmvc.repositories.CustomerRepository;
 import com.example.spring6restmvc.services.BeerCsvService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -47,7 +44,7 @@ public class BootstrapData implements CommandLineRunner {
             List<BeerCSVRecord> recs = beerCsvService.convertCSV(file);
 
             recs.forEach(beerCSVRecord -> {
-                BeerStyle beerStyle = switch (beerCSVRecord.getStyle()) {
+                BeerStyle beerStyle = switch(beerCSVRecord.getStyle()) {
                     case "American Pale Lager" -> BeerStyle.LAGER;
                     case "American Pale Ale (APA)", "American Black Ale", "Belgian Dark Ale", "American Blonde Ale" ->
                             BeerStyle.ALE;
@@ -109,6 +106,7 @@ public class BootstrapData implements CommandLineRunner {
         }
 
     }
+
 
     private void loadCustomerData() {
 
